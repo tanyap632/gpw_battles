@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router' // Используем useRoute вместо useRouter
+import { useRoute, useRouter } from 'vue-router'
 
-// Получаем route вместо router
 const route = useRoute()
+const router = useRouter()
 const item = ref({})
 const product = ref({})
 
@@ -11,8 +11,6 @@ onMounted(async () => {
   try {
     const response = await fetch('https://98ec1f7320b02e63.mokky.dev/operation_1942')
     const data = await response.json()
-
-    // Используем route.params.id
     item.value = data.find((el) => el.id === parseInt(route.params.id))
     product.value = {
       styles: item.value.styles || {},
@@ -25,15 +23,15 @@ onMounted(async () => {
   }
 })
 
-// Для перехода на главную страницу используем useRouter
-import { useRouter } from 'vue-router'
-const router = useRouter()
-
 const goToHome = () => {
-  if (router && router.push) {
-    router.push({ name: 'home', hash: '#operation1942' })
-  } else {
-    console.error('Роутер не определен')
+  try {
+    // Указываем имя маршрута и якорь
+    router.push({
+      name: 'home',
+      hash: '#operation1942'
+    })
+  } catch (error) {
+    console.error('Ошибка перехода:', error)
   }
 }
 </script>
