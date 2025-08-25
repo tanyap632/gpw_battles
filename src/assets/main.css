@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  scroll-behavior: smooth;
+}
+@font-face {
+  font-family: 'PTSans';
+  src: url('/public/fonts/PT_Sans/PTSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Если есть bold, italic - подключайте отдельными @font-face */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/public/fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
